@@ -221,15 +221,15 @@ spec:
 4. Продемонстрировать состояние пода до и после запуска сервиса.
 
 ```
+root@baranov:/home/baranovsa/kube-1.3# kubectl apply -f deployment-02.yaml
+deployment.apps/deployment-02 unchanged
+service/nginx created
+root@baranov:/home/baranovsa/kube-1.3#
 root@baranov:/home/baranovsa/kube-1.3# kubectl get svc
 NAME     	TYPE        CLUSTER-IP  	EXTERNAL-IP   PORT(S)   AGE
 kubernetes      ClusterIP   10.96.0.1   	<none>        443/TCP   4d22h
 nginx    	ClusterIP   10.111.84.132       <none>        80/TCP	4m34s
 root@baranov:/home/baranovsa/kube-1.3#
-
-root@baranov:/home/baranovsa/kube-1.3# kubectl apply -f deployment-02.yaml
-deployment.apps/deployment-02 unchanged
-service/nginx created
 root@baranov:/home/baranovsa/kube-1.3# kubectl get pods
 NAME                        	READY   STATUS     RESTARTS     AGE
 deployment-02-77cfb9bc7-db4z4   0/1 	Init:0/1   0      	58m
