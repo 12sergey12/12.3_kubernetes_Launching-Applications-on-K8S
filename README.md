@@ -156,7 +156,7 @@ root@baranov:/home/baranovsa/kube-1.3#
 1. Создать Deployment приложения nginx и обеспечить старт контейнера только после того, как будет запущен сервис этого приложения.
 
 
-[deployment-02.yaml]()
+[deployment-02.yaml](https://github.com/12sergey12/12.3_kubernetes_Launching-Applications-on-K8S/blob/main/deployment-02.yaml)
 
 ```
 apiVersion: apps/v1
