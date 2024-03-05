@@ -27,7 +27,7 @@
 1. Создать Deployment приложения, состоящего из двух контейнеров — nginx и multitool. Решить возникшую ошибку.
 
 
-[deployment-01.yaml]()
+[deployment-01.yaml](https://github.com/12sergey12/12.3_kubernetes_Launching-Applications-on-K8S/blob/main/deployment-01.yaml)
 
 ```
 apiVersion: apps/v1
