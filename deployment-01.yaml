@@ -1,0 +1,67 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-01
+  labels:
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx_multitool
+  template:
+    metadata:
+      labels:
+        app: nginx_multitool
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.20
+        ports:
+        - containerPort: 80
+      - name: multitool
+        image: wbitt/network-multitool
+        env:
+        - name: HTTP_PORT
+          value: "1180"
+        - name: HTTPS_PORT
+          value: "11443"
+        ports:
+        - containerPort: 1180
+          name: mt-http
+        - containerPort: 11443
+          name: mt-https
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-svc
+spec:
+  ports:
+    - name: nginx
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    - name: miltitool
+      port: 1180
+      protocol: TCP
+      targetPort: 1180
+  selector:
+    app: nginx_multitool
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: multitool
+  name: pod-multitool
+spec:
+  containers:
+  - image: wbitt/network-multitool
+    imagePullPolicy: IfNotPresent
+    name: multitool
